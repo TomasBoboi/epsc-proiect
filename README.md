@@ -1,2 +1,6 @@
 # epsc-proiect
- Proiect EPSC
+Proiect EPSC
+
+Tomas-Adrian Boboi, Alexandru-Vlad Cornea
+
+Anul IV, Sem II

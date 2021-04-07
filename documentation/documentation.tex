@@ -22,10 +22,27 @@
     \section{Descrierea sistemului}
 
         \subsection{Descrierea sistemului din viața reală care se modelează}
-            \lipsum[1-2]
+            Sistemul modelat în lucrarea aleasă reprezintă o așa-zisă arhitectură orientată pe servicii (Service-oriented Architecture, sau SoA, pe scurt). În cadrul acestei paradigme, serviciile sunt văzute ca entități modulare care pot fi înlănțuite și conectate între ele pentru a obține o funcționalitate nouă, mai complexă decât cea a componentelor individuale care alcătuiesc sistemul.
+
+            Construind un sistem utilizând arhitectura menționată, atât administratorii sistemului, cât și utilizatorii finali, se bucură de beneficii pe care un sistem cu o arhitectură cu un grad de modularitate scăzută nu le poate oferi.
+
+            Pe de o parte, costurile de implementare, îmbunătățire ulterioară, dar și de mentenanță suportate de administratorul de sistem sunt mai scăzute, granularitatea sistemului permițând modificări restrânse pe un modul individual sau un set de module bine definit.
+
+            Pe de altă parte, utilizatorii se bucură de un sistem care oferă o per\-for\-man\-ță mulțumitoare, care poate fi ajustată dinamic, in funcție de diverși factori. Acest lucru asigură îndeplinirea țelului utilizatorului cât mai rapid și mai ușor, fapt ce garantează utilizarea viitoare a serviciului de către client.
+
+            \vspace{\baselineskip}
+            \noindent
+            Sistemul concret din viața reală care se modelează este o agenție de turism care dorește să-și mute activitatea în mediul on-line. Utilizatorii au acces la această aplicație web prin intermediul unei interfețe, numită \textit{frontend}.
+
+            Utilizatorii aleg mai întâi o locație de pe hartă, după care selectează mijlocul de transport dorit (tren, avion sau taxi).
+
+            Următorul pas este plata, iar utilizatorii care doresc să facă mai multe opriri în călătoriile lor își vor depune călătoria curentă într-un coș de cum\-pă\-ră\-turi. Trebuie menționat aici că aplicația suportă două clase de utilizatori: cei care doresc să planifice o călătorie directă, din punctul A în punctul B, și cei care doresc să-și planifice o călătorie cu opriri intermediare, planificate individual.
+
+            Din cele spuse mai sus, putem deduce serviciile care sunt inlănțuite în cadrul sistemului: \textit{frontend}, \textit{hartă}, \textit{coș de cumpărături}, \textit{tren}, \textit{avion}, \textit{taxi} și \textit{plată}. Imbunătățirea performanței sistemului va presupune imbunătățirea performanțelor serviciilor individuale, fapt ce reprezintă țelul lucrării alese, și al proiectului curent.
+            \pagebreak
 
         \subsection{Descrierea parametrilor care caracterizează sistemul}
-            \lipsum[1-2]
+            \pagebreak
 
 
     \section{Descrierea modelului construit}

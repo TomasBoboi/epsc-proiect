@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<archive xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="project.jsimg" timestamp="Wed Apr 07 18:19:58 EEST 2021" xsi:noNamespaceSchemaLocation="Archive.xsd">
-    <sim disableStatisticStop="false" logDecimalSeparator="." logDelimiter="," logPath="C:\Users\Vlad\JMT\" logReplaceMode="0" maxEvents="-1" maxSamples="1000000" name="project.jsimg" polling="1.0" xsi:noNamespaceSchemaLocation="SIMmodeldefinition.xsd">
-        <userClass customers="0" name="OnTime" priority="0" type="closed"/>
-        <userClass customers="0" name="Itinerary" priority="0" type="closed"/>
-        <node name="Users">
+<archive xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="project.jsimg" timestamp="Thu Apr 08 20:05:14 EEST 2021" xsi:noNamespaceSchemaLocation="Archive.xsd">
+    <sim disableStatisticStop="false" logDecimalSeparator="." logDelimiter="," logPath="C:\Users\Vlad\JMT" logReplaceMode="0" maxEvents="-1" maxSamples="1000000" name="project.jsimg" polling="1.0" xsi:noNamespaceSchemaLocation="SIMmodeldefinition.xsd">
+        <userClass customers="1" name="OnTime" priority="0" referenceSource="Utenti" type="closed"/>
+        <userClass customers="1" name="Itinerary" priority="0" referenceSource="Utenti" type="closed"/>
+        <node name="Utenti">
             <section className="Queue">
                 <parameter classPath="java.lang.Integer" name="size">
                     <value>-1</value>
@@ -109,7 +109,7 @@
                         <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
                         <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
                             <subParameter classPath="java.lang.Double" name="lambda">
-                                <value>150.0</value>
+                                <value>151.51515151515153</value>
                             </subParameter>
                         </subParameter>
                     </subParameter>
@@ -118,13 +118,115 @@
             <section className="Router">
                 <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
                     <refClass>OnTime</refClass>
-                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Mappe</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.5</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Carrello</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.0</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Aereo</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.12162162162162161</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Taxi</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.0945945945945946</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Treno</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.12162162162162161</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Pagamento</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.16216216216216217</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
                     <refClass>Itinerary</refClass>
-                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.RandomStrategy" name="Random"/>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Mappe</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.3157894736842105</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Carrello</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.2631578947368421</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Aereo</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.10526315789473684</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Taxi</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.15789473684210525</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Treno</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.10526315789473684</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Pagamento</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.05263157894736842</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
                 </parameter>
             </section>
         </node>
-        <node name="Plans">
+        <node name="Mappe">
             <section className="Queue">
                 <parameter classPath="java.lang.Integer" name="size">
                     <value>-1</value>
@@ -191,7 +293,7 @@
                 </parameter>
             </section>
         </node>
-        <node name="ShoppingCarts">
+        <node name="Carrello">
             <section className="Queue">
                 <parameter classPath="java.lang.Integer" name="size">
                     <value>-1</value>
@@ -230,14 +332,7 @@
                 </parameter>
                 <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
                     <refClass>OnTime</refClass>
-                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
-                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
-                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
-                            <subParameter classPath="java.lang.Double" name="lambda">
-                                <value>1.0</value>
-                            </subParameter>
-                        </subParameter>
-                    </subParameter>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.DisabledServiceTimeStrategy" name="DisabledServiceTimeStrategy"/>
                     <refClass>Itinerary</refClass>
                     <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
                         <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
@@ -258,7 +353,7 @@
                 </parameter>
             </section>
         </node>
-        <node name="Airplane">
+        <node name="Aereo">
             <section className="Queue">
                 <parameter classPath="java.lang.Integer" name="size">
                     <value>-1</value>
@@ -392,7 +487,7 @@
                 </parameter>
             </section>
         </node>
-        <node name="Trains">
+        <node name="Treno">
             <section className="Queue">
                 <parameter classPath="java.lang.Integer" name="size">
                     <value>-1</value>
@@ -459,7 +554,7 @@
                 </parameter>
             </section>
         </node>
-        <node name="Payments">
+        <node name="Pagamento">
             <section className="Queue">
                 <parameter classPath="java.lang.Integer" name="size">
                     <value>-1</value>
@@ -526,35 +621,152 @@
                 </parameter>
             </section>
         </node>
-        <connection source="Users" target="Frontend"/>
-        <connection source="Frontend" target="Plans"/>
+        <measure alpha="0.01" name="Frontend_OnTime_Residence Time" nodeType="station" precision="0.03" referenceNode="Frontend" referenceUserClass="OnTime" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Carrello_OnTime_Residence Time" nodeType="station" precision="0.03" referenceNode="Carrello" referenceUserClass="OnTime" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Mappe_OnTime_Residence Time" nodeType="station" precision="0.03" referenceNode="Mappe" referenceUserClass="OnTime" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Treno_OnTime_Residence Time" nodeType="station" precision="0.03" referenceNode="Treno" referenceUserClass="OnTime" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Aereo_OnTime_Residence Time" nodeType="station" precision="0.03" referenceNode="Aereo" referenceUserClass="OnTime" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Taxi_OnTime_Residence Time" nodeType="station" precision="0.03" referenceNode="Taxi" referenceUserClass="OnTime" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Pagamento_OnTime_Residence Time" nodeType="station" precision="0.03" referenceNode="Pagamento" referenceUserClass="OnTime" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Frontend_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceNode="Frontend" referenceUserClass="Itinerary" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Carrello_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceNode="Carrello" referenceUserClass="Itinerary" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Mappe_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceNode="Mappe" referenceUserClass="Itinerary" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Treno_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceNode="Treno" referenceUserClass="Itinerary" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Aereo_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceNode="Aereo" referenceUserClass="Itinerary" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Taxi_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceNode="Taxi" referenceUserClass="Itinerary" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Pagamento_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceNode="Pagamento" referenceUserClass="Itinerary" type="Residence Time" verbose="false"/>
+        <connection source="Utenti" target="Frontend"/>
+        <connection source="Frontend" target="Mappe"/>
+        <connection source="Frontend" target="Carrello"/>
+        <connection source="Frontend" target="Aereo"/>
+        <connection source="Frontend" target="Taxi"/>
+        <connection source="Frontend" target="Treno"/>
+        <connection source="Frontend" target="Pagamento"/>
+        <connection source="Mappe" target="Frontend"/>
+        <connection source="Carrello" target="Utenti"/>
+        <connection source="Aereo" target="Frontend"/>
+        <connection source="Taxi" target="Frontend"/>
+        <connection source="Treno" target="Frontend"/>
+        <connection source="Pagamento" target="Utenti"/>
+        <preload>
+            <stationPopulations stationName="Utenti">
+                <classPopulation population="1" refClass="OnTime"/>
+                <classPopulation population="1" refClass="Itinerary"/>
+            </stationPopulations>
+        </preload>
     </sim>
     <jmodel xsi:noNamespaceSchemaLocation="JModelGUI.xsd">
         <userClass color="#FF0000FF" name="OnTime"/>
         <userClass color="#FFFF0000" name="Itinerary"/>
-        <station name="Users">
-            <position angle="0.0" rotate="false" x="88.0" y="450.0"/>
+        <station name="Utenti">
+            <position angle="0.0" rotate="false" x="326.0" y="480.0"/>
         </station>
         <station name="Frontend">
-            <position angle="0.0" rotate="false" x="247.0" y="535.0"/>
+            <position angle="0.0" rotate="false" x="25.0" y="90.0"/>
         </station>
-        <station name="Plans">
-            <position angle="0.0" rotate="false" x="487.0" y="535.0"/>
+        <station name="Mappe">
+            <position angle="0.0" rotate="false" x="165.0" y="238.0"/>
         </station>
-        <station name="ShoppingCarts">
-            <position angle="0.0" rotate="false" x="482.0" y="400.0"/>
+        <station name="Carrello">
+            <position angle="0.0" rotate="false" x="165.0" y="523.0"/>
         </station>
-        <station name="Airplane">
-            <position angle="0.0" rotate="false" x="487.0" y="271.0"/>
+        <station name="Aereo">
+            <position angle="0.0" rotate="false" x="165.0" y="90.0"/>
         </station>
         <station name="Taxi">
-            <position angle="0.0" rotate="false" x="488.0" y="209.0"/>
+            <position angle="0.0" rotate="false" x="165.0" y="369.0"/>
         </station>
-        <station name="Trains">
-            <position angle="0.0" rotate="false" x="492.0" y="139.0"/>
+        <station name="Treno">
+            <position angle="0.0" rotate="false" x="165.0" y="762.0"/>
         </station>
-        <station name="Payments">
-            <position angle="0.0" rotate="false" x="490.0" y="26.0"/>
+        <station name="Pagamento">
+            <position angle="0.0" rotate="false" x="165.0" y="631.0"/>
         </station>
     </jmodel>
+    <results elapsedTime="9463" logDecimalSeparator="." logDelimiter="," pollingInterval="1.0" xsi:noNamespaceSchemaLocation="Results.xsd">
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="0" finalValue="0.012820257084802975" name="Frontend_OnTime_Residence Time" nodeType="station" precision="0.03" referenceClass="OnTime" referenceStation="Frontend" state="1" type="3">
+            <sample lastIntervalAvgValue="0.012860072028924334" lowerBound="0.012528310584153097" meanValue="0.012820257084802975" simulationTime="6778.760004330626" upperBound="0.013112203585452856"/>
+            <sample lastIntervalAvgValue="0.012860072028924334" lowerBound="0.012528310584153097" meanValue="0.012820257084802975" simulationTime="6778.760004330626" upperBound="0.013112203585452856"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="0" discardedSamples="0" finalValue="0.0" name="Carrello_OnTime_Residence Time" nodeType="station" precision="0.03" referenceClass="OnTime" referenceStation="Carrello" state="3" type="3">
+            <sample lastIntervalAvgValue="0.0" meanValue="0.0" simulationTime="0.0"/>
+            <sample lastIntervalAvgValue="0.0" meanValue="0.0" simulationTime="0.0"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="270" finalValue="0.00781843855552499" name="Mappe_OnTime_Residence Time" nodeType="station" precision="0.03" referenceClass="OnTime" referenceStation="Mappe" state="1" type="3">
+            <sample lastIntervalAvgValue="0.0077677143154724565" lowerBound="0.007534862785872232" meanValue="0.00777635196418642" simulationTime="9806.450494363973" upperBound="0.008017841142500608"/>
+            <sample lastIntervalAvgValue="0.007877446069286115" lowerBound="0.0076964310352678955" meanValue="0.00781843855552499" simulationTime="13764.929001426322" upperBound="0.007940446075782082"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="0" finalValue="0.0037389019318255414" name="Treno_OnTime_Residence Time" nodeType="station" precision="0.03" referenceClass="OnTime" referenceStation="Treno" state="1" type="3">
+            <sample lastIntervalAvgValue="0.0038649414341575773" lowerBound="0.003325113653009306" meanValue="0.00383793057641499" simulationTime="9806.425518913662" upperBound="0.004350747499820675"/>
+            <sample lastIntervalAvgValue="0.0037356196520211046" lowerBound="0.0036221451300805095" meanValue="0.0037789755614791873" simulationTime="36161.25015641082" upperBound="0.0039358059928778655"/>
+            <sample lastIntervalAvgValue="0.003748258683388448" lowerBound="0.003679986015469246" meanValue="0.0037389019318255414" simulationTime="56590.788201018186" upperBound="0.0037978178481818375"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="56100" discardedSamples="1750" finalValue="0.0022546905711286758" name="Aereo_OnTime_Residence Time" nodeType="station" precision="0.03" referenceClass="OnTime" referenceStation="Aereo" state="1" type="3">
+            <sample lastIntervalAvgValue="0.002315930129281174" meanValue="0.002315930129281174" simulationTime="9803.864511088199"/>
+            <sample lastIntervalAvgValue="0.0022715227140965395" lowerBound="0.002213068203844149" meanValue="0.0022962049586092714" simulationTime="36155.808181448694" upperBound="0.002379341713374394"/>
+            <sample lastIntervalAvgValue="0.002242525565537486" lowerBound="0.00217733347975491" meanValue="0.002264927441970779" simulationTime="67680.31269406692" upperBound="0.002352521404186648"/>
+            <sample lastIntervalAvgValue="0.00227103616726497" lowerBound="0.002209500937991337" meanValue="0.0022546905711286758" simulationTime="78913.55681023089" upperBound="0.002299880204266014"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="110" finalValue="0.0017403936259356998" name="Taxi_OnTime_Residence Time" nodeType="station" precision="0.03" referenceClass="OnTime" referenceStation="Taxi" state="1" type="3">
+            <sample lastIntervalAvgValue="0.0017476344513075604" lowerBound="0.0015032681675801961" meanValue="0.0017630015234838723" simulationTime="9806.453197828203" upperBound="0.0020227348793875484"/>
+            <sample lastIntervalAvgValue="0.0017479093320795435" lowerBound="0.0016914036912204845" meanValue="0.0017786738903789055" simulationTime="36161.22629594087" upperBound="0.0018659440895373266"/>
+            <sample lastIntervalAvgValue="0.0017441782094183083" lowerBound="0.0016572206992036182" meanValue="0.0017327412598252643" simulationTime="67680.27441052656" upperBound="0.00180826182044691"/>
+            <sample lastIntervalAvgValue="0.001720517601279646" lowerBound="0.0017080325492347358" meanValue="0.0017403936259356998" simulationTime="72358.61308111265" upperBound="0.0017727547026366638"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="35840" discardedSamples="520" finalValue="9.969554470869082E-4" name="Pagamento_OnTime_Residence Time" nodeType="station" precision="0.03" referenceClass="OnTime" referenceStation="Pagamento" state="1" type="3">
+            <sample lastIntervalAvgValue="9.939080211524658E-4" lowerBound="9.469081515553648E-4" meanValue="9.942686300682066E-4" simulationTime="9806.445359038995" upperBound="0.001041629108581048"/>
+            <sample lastIntervalAvgValue="9.94336580787375E-4" lowerBound="9.544683989899437E-4" meanValue="9.947015774781388E-4" simulationTime="36161.27703127395" upperBound="0.0010349347559663337"/>
+            <sample lastIntervalAvgValue="0.001053323301670669" lowerBound="9.782405774625461E-4" meanValue="9.969554470869082E-4" simulationTime="37561.46329205989" upperBound="0.0010156703167112703"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="20" finalValue="0.020866892743058807" name="Frontend_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceClass="Itinerary" referenceStation="Frontend" state="1" type="3">
+            <sample lastIntervalAvgValue="0.020731297328228798" lowerBound="0.02016335074698401" meanValue="0.02083246819832538" simulationTime="9805.86804868649" upperBound="0.02150158564966675"/>
+            <sample lastIntervalAvgValue="0.021288041791840673" lowerBound="0.02040933123716128" meanValue="0.020866892743058807" simulationTime="13472.383491514995" upperBound="0.021324454248956338"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="35840" discardedSamples="535" finalValue="0.004178662972086197" name="Carrello_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceClass="Itinerary" referenceStation="Carrello" state="1" type="3">
+            <sample lastIntervalAvgValue="0.004162672800760889" lowerBound="0.003632880213627941" meanValue="0.004030759661750761" simulationTime="9805.872193372117" upperBound="0.0044286391098735806"/>
+            <sample lastIntervalAvgValue="0.004160252278660435" lowerBound="0.004026445587086061" meanValue="0.0041645913606166715" simulationTime="36160.56381564735" upperBound="0.004302737134147281"/>
+            <sample lastIntervalAvgValue="0.004233857167353672" lowerBound="0.004096588173418322" meanValue="0.004178662972086197" simulationTime="45143.494429973456" upperBound="0.004260737770754072"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="95" finalValue="5.12122914853216E-4" name="Mappe_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceClass="Itinerary" referenceStation="Mappe" state="1" type="3">
+            <sample lastIntervalAvgValue="5.105697425483845E-4" lowerBound="4.640538045040174E-4" meanValue="5.171961350926866E-4" simulationTime="9805.864790606023" upperBound="5.703384656813559E-4"/>
+            <sample lastIntervalAvgValue="5.088366700731843E-4" lowerBound="4.851874445910948E-4" meanValue="5.083501350822784E-4" simulationTime="36160.540482127864" upperBound="5.315128255734622E-4"/>
+            <sample lastIntervalAvgValue="5.127616290892462E-4" lowerBound="5.031865610020778E-4" meanValue="5.12122914853216E-4" simulationTime="52648.264615857785" upperBound="5.210592687043543E-4"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="56320" discardedSamples="1610" finalValue="3.4072562303899843E-4" name="Treno_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceClass="Itinerary" referenceStation="Treno" state="1" type="3">
+            <sample lastIntervalAvgValue="3.362575096151799E-4" meanValue="3.362575096151799E-4" simulationTime="9805.856667180778"/>
+            <sample lastIntervalAvgValue="3.3532901899873324E-4" lowerBound="3.2335767425315664E-4" meanValue="3.430610673012987E-4" simulationTime="36154.979770183396" upperBound="3.6276446034944065E-4"/>
+            <sample lastIntervalAvgValue="3.407519708821113E-4" lowerBound="3.2126456002873273E-4" meanValue="3.3634978073344415E-4" simulationTime="67679.8399724038" upperBound="3.5143500143815557E-4"/>
+            <sample lastIntervalAvgValue="3.38961073914192E-4" lowerBound="3.2783449871703365E-4" meanValue="3.402532375087413E-4" simulationTime="95176.68871526877" upperBound="3.526719763004489E-4"/>
+            <sample lastIntervalAvgValue="3.419897158061015E-4" lowerBound="3.287882849995779E-4" meanValue="3.412431542862529E-4" simulationTime="122018.18951119414" upperBound="3.536980235729279E-4"/>
+            <sample lastIntervalAvgValue="3.343494696385009E-4" lowerBound="3.292862295487386E-4" meanValue="3.417599615338574E-4" simulationTime="148785.46717633947" upperBound="3.542336935189762E-4"/>
+            <sample lastIntervalAvgValue="3.4236291226073324E-4" lowerBound="3.295200057856074E-4" meanValue="3.4200259347698267E-4" simulationTime="175745.6805142648" upperBound="3.54485181168358E-4"/>
+            <sample lastIntervalAvgValue="3.5400818549483136E-4" lowerBound="3.354635510038218E-4" meanValue="3.4072562303899843E-4" simulationTime="176904.0996970507" upperBound="3.4598769507417505E-4"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="0" finalValue="2.696306699689755E-4" name="Aereo_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceClass="Itinerary" referenceStation="Aereo" state="1" type="3">
+            <sample lastIntervalAvgValue="2.7262496625097096E-4" lowerBound="2.086195845283264E-4" meanValue="2.7010769594320975E-4" simulationTime="9803.527847578274" upperBound="3.315958073580931E-4"/>
+            <sample lastIntervalAvgValue="2.689712265757271E-4" lowerBound="2.52368799580922E-4" meanValue="2.691997280323451E-4" simulationTime="36154.9584917492" upperBound="2.860306564837682E-4"/>
+            <sample lastIntervalAvgValue="2.7064801415734203E-4" lowerBound="2.593162563769927E-4" meanValue="2.6969618094776663E-4" simulationTime="67676.93220336402" upperBound="2.8007610551854055E-4"/>
+            <sample lastIntervalAvgValue="2.683921417031527E-4" lowerBound="2.5848407369118045E-4" meanValue="2.6883068761020994E-4" simulationTime="95176.13714870602" upperBound="2.791773015292395E-4"/>
+            <sample lastIntervalAvgValue="2.695725618069783E-4" lowerBound="2.581362328190419E-4" meanValue="2.684689233455858E-4" simulationTime="122003.62315329879" upperBound="2.788016138721298E-4"/>
+            <sample lastIntervalAvgValue="2.8366023942561744E-4" lowerBound="2.6430863594354527E-4" meanValue="2.696306699689755E-4" simulationTime="126485.47268060122" upperBound="2.7495270399440576E-4"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="610" finalValue="4.0731913718113256E-4" name="Taxi_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceClass="Itinerary" referenceStation="Taxi" state="1" type="3">
+            <sample lastIntervalAvgValue="3.8516504107223717E-4" lowerBound="3.0922778026948295E-4" meanValue="3.833875242799805E-4" simulationTime="9805.850166143753" upperBound="4.57547268290478E-4"/>
+            <sample lastIntervalAvgValue="4.085456897708066E-4" lowerBound="3.802828499011318E-4" meanValue="4.068139797617629E-4" simulationTime="36154.98559292507" upperBound="4.3334510962239397E-4"/>
+            <sample lastIntervalAvgValue="4.0986970597696524E-4" lowerBound="3.9457964209432795E-4" meanValue="4.11392623105924E-4" simulationTime="67679.85487705136" upperBound="4.2820560411752003E-4"/>
+            <sample lastIntervalAvgValue="4.048794577602567E-4" lowerBound="3.9864676709898406E-4" meanValue="4.0731913718113256E-4" simulationTime="84840.88332463847" upperBound="4.159915072632811E-4"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="0" finalValue="1.6684339162373283E-4" name="Pagamento_Itinerary_Residence Time" nodeType="station" precision="0.03" referenceClass="Itinerary" referenceStation="Pagamento" state="1" type="3">
+            <sample lastIntervalAvgValue="1.70948076172045E-4" lowerBound="1.3316736522279234E-4" meanValue="1.7085876128414393E-4" simulationTime="9803.564937450246" upperBound="2.0855015734549552E-4"/>
+            <sample lastIntervalAvgValue="1.6492084160658606E-4" lowerBound="1.4328228847386987E-4" meanValue="1.6499300240736597E-4" simulationTime="36154.98971663119" upperBound="1.8670371634086204E-4"/>
+            <sample lastIntervalAvgValue="1.693956866998001E-4" lowerBound="1.6086005228035772E-4" meanValue="1.686320163185623E-4" simulationTime="67676.93609002401" upperBound="1.7640398035676687E-4"/>
+            <sample lastIntervalAvgValue="1.6524660497784839E-4" lowerBound="1.5934868134195846E-4" meanValue="1.6704762339356594E-4" simulationTime="95170.16356165543" upperBound="1.747465654451734E-4"/>
+            <sample lastIntervalAvgValue="1.7129633680669284E-4" lowerBound="1.593963249455687E-4" meanValue="1.6709756890102774E-4" simulationTime="122018.19189132973" upperBound="1.747988128564868E-4"/>
+            <sample lastIntervalAvgValue="1.6472862525839963E-4" lowerBound="1.6063034385041124E-4" meanValue="1.680669063625266E-4" simulationTime="148780.5391538179" upperBound="1.755034688746419E-4"/>
+            <sample lastIntervalAvgValue="1.704206911364966E-4" lowerBound="1.605025268734366E-4" meanValue="1.679331719547814E-4" simulationTime="175743.6124199035" upperBound="1.753638170361262E-4"/>
+            <sample lastIntervalAvgValue="1.6939609758633362E-4" lowerBound="1.6054086788051052E-4" meanValue="1.6797328800191965E-4" simulationTime="201682.68100527755" upperBound="1.7540570812332878E-4"/>
+            <sample lastIntervalAvgValue="1.6651522610471788E-4" lowerBound="1.5984549699808292E-4" meanValue="1.672457241420488E-4" simulationTime="228772.70304493813" upperBound="1.7464595128601466E-4"/>
+            <sample lastIntervalAvgValue="1.650250480257078E-4" lowerBound="1.6368933991481552E-4" meanValue="1.6684339162373283E-4" simulationTime="250328.54750463978" upperBound="1.6999744333265018E-4"/>
+        </measure>
+    </results>
 </archive>

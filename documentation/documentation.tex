@@ -3,6 +3,7 @@
 \usepackage{hyperref}
 \usepackage[romanian]{babel}
 \usepackage{graphicx}
+\usepackage{comment}
 
 \usepackage{lipsum}
 
@@ -42,13 +43,49 @@
             \pagebreak
 
         \subsection{Descrierea parametrilor care caracterizează sistemul}
+            Parametrii care caracterizează sistemul din viața reală sunt timpii de servire ai fiecărui serviciu în parte. Fiecare componentă modulară din sistem are asociat acest timp de servire, care reprezintă timpul scurs între primirea intrării și generarea unei ieșiri spre următorul modul din lanțul sistemului.
+
+            În mod ideal, am dori ca acești timpi să tindă spre zero, însă din considerente de cost și implementare, acest lucru nu este tot timpul posibil. Prețul unui serviciu crește direct proporțional cu calitatea acestuia, astfel încât alegerea în toate cazurile a celor mai performante servicii posibile poate duce la costuri astronomice, care, deși duc la o performanță pe măsură, nu-și justifică costul, clienții neputând sesiza vreo diferență față de un sistem puțin mai ieftin.
+
+            Acesta este unul din scopurile simulării unui asemenea sistem: găsirea combinației de servicii care oferă cea mai bună performanță la prețul cel mai avantajos pentru administratorul de sistem, în funcție de nevoile acestuia și a clienților săi.
+
+            Având în vedere acestea, putem menționa parametrii pe care îi vom folosi pentru a modela și simula sistemul nostru:
+            \begin{itemize}
+                \item{timpii medii de servire ai fiecărui serviciu}
+                    \begin{itemize}
+                        \item{servirea se face după o distribuție exponențială, iar acești timpi reprezintă valoarea medie aferentă valorii $\lambda$ care caracterizează distribuția exponențială}
+                        \item{timpii de servire corespund fiecărui serviciu în parte, și sunt diferiți în funcție de clasa de utilizatori despre care se discută}
+                    \end{itemize}
+                \item{probabilitățile de rutare ale serviciului \textit{Frontend}}
+                    \begin{itemize}
+                        \item{corespondentul lor din viața reală este probabilitatea ca o persoană să acceseze următorul serviciu, pornind de la interfața cu utilizatorul}
+                    \end{itemize}
+            \end{itemize}
             \pagebreak
 
 
     \section{Descrierea modelului construit}
 
         \subsection{Arhitectura modelului}
-            \lipsum[1-2]
+            Arhitectura modelului cuprinde serviciile menționate în secțiunea anterioară, modelate ca module de tip \textit{Queue} în contextul programului JMT (Java Modelling Tools). Serviciile sunt următoarele:
+
+            \begin{itemize}
+                \itemsep0em
+                \item{\textit{Frontend} - interfața cu utilizatorul}
+                \item{\textit{Mappe} - serviciul de selectare a unei locații de pe hartă}
+                \item{\textit{Carrello} - serviciul care implementează coșul de cumpărături}
+                \item{\textit{Aereo}, \textit{Taxi}, \textit{Treno} - serviciile care implementează posibilitatea de a alege între transportul aerian, cu mașina, respectiv cu trenul}
+                \item{\textit{Pagamento} - serviciul prin intermediul căruia utilizatorul realizează plata călătoriei, sau a călătoriilor, dacă este un utilizator care alege o călătorie cu mai multe opriri}
+            \end{itemize}
+
+            Pe lângă aceste servicii, avem utilizatorii, reprezentați de modului \textit{Utenti}. Aceștia nu mai sunt reprezentați ca un modul de tipul \textit{Queue}, întrucât utilizatorii nu reprezintă un serviciu în sine, ci beneficiarii acestora.
+
+            \begin{figure}[h!]
+                \centering
+                \includegraphics[width=0.5\textwidth]{images/architecture.png}
+                \caption{Arhitectura sistemului: utilizatorii accesează prin intermediul interfeței cu utilizatorul diversele servicii oferite de aplicație}
+            \end{figure}
+            \pagebreak
 
         \subsection{Indicii de performanță}
             \lipsum[1-2]

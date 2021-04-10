@@ -25,7 +25,7 @@
         \subsection{Descrierea sistemului din viața reală care se modelează}
             Sistemul modelat în lucrarea aleasă reprezintă o așa-zisă arhitectură orientată pe servicii (Service-oriented Architecture, sau SoA, pe scurt). În cadrul acestei paradigme, serviciile sunt văzute ca entități modulare care pot fi înlănțuite și conectate între ele pentru a obține o funcționalitate nouă, mai complexă decât cea a componentelor individuale care alcătuiesc sistemul.
 
-            Construind un sistem utilizând arhitectura menționată, atât administratorii sistemului, cât și utilizatorii finali, se bucură de beneficii pe care un sistem cu o arhitectură cu un grad de modularitate scăzută nu le poate oferi.
+            Construind un sistem utilizând arhitectura menționată, atât administratorii sistemului, cât și utilizatorii finali se bucură de beneficii pe care un sistem cu o arhitectură cu un grad de modularitate scăzută nu le poate oferi.
 
             Pe de o parte, costurile de implementare, îmbunătățire ulterioară, dar și de mentenanță suportate de administratorul de sistem sunt mai scăzute, granularitatea sistemului permițând modificări restrânse pe un modul individual sau un set de module bine definit.
 
@@ -33,7 +33,7 @@
 
             \vspace{\baselineskip}
             \noindent
-            Sistemul concret din viața reală care se modelează este o agenție de turism care dorește să-și mute activitatea în mediul on-line. Utilizatorii au acces la această aplicație web prin intermediul unei interfețe, numită \textit{frontend}.
+            Sistemul concret din viața reală care se modelează este o agenție de turism care dorește să-și mute activitatea în mediul on-line. Utilizatorii au acces la această aplicație web prin intermediul unei interfețe, numită \textit{Frontend}.
 
             Utilizatorii aleg mai întâi o locație de pe hartă, după care selectează mijlocul de transport dorit (tren, avion sau taxi).
 
@@ -45,7 +45,7 @@
         \subsection{Descrierea parametrilor care caracterizează sistemul}
             Parametrii care caracterizează sistemul din viața reală sunt timpii de servire ai fiecărui serviciu în parte. Fiecare componentă modulară din sistem are asociat acest timp de servire, care reprezintă timpul scurs între primirea intrării și generarea unei ieșiri spre următorul modul din lanțul sistemului.
 
-            În mod ideal, am dori ca acești timpi să tindă spre zero, însă din considerente de cost și implementare, acest lucru nu este tot timpul posibil. Prețul unui serviciu crește direct proporțional cu calitatea acestuia, astfel încât alegerea în toate cazurile a celor mai performante servicii posibile poate duce la costuri astronomice, care, deși duc la o performanță pe măsură, nu-și justifică costul, clienții neputând sesiza vreo diferență față de un sistem puțin mai ieftin.
+            În mod ideal, am dori ca acești timpi să tindă spre zero, însă din considerente de cost și implementare, acest lucru nu este tot timpul posibil. Prețul unui serviciu crește direct proporțional cu calitatea acestuia, astfel încât alegerea în toate cazurile a celor mai performante servicii posibile poate duce la costuri astronomice, care, deși duc la o performanță pe măsură, nu-și justifică costul, clienții neputând sesiza vreo diferență față de un sistem mai ieftin.
 
             Acesta este unul din scopurile simulării unui asemenea sistem: găsirea combinației de servicii care oferă cea mai bună performanță la prețul cel mai avantajos pentru administratorul de sistem, în funcție de nevoile acestuia și a clienților săi.
 
@@ -83,7 +83,7 @@
             \begin{figure}[h!]
                 \centering
                 \includegraphics[width=0.45\textwidth]{images/architecture.png}
-                \caption{Arhitectura sistemului: utilizatorii accesează prin intermediul interfeței cu utilizatorul diversele servicii oferite de aplicație}
+                \caption{Arhitectura sistemului: utilizatorii accesează diversele servicii oferite de aplicație prin intermediul interfeței cu utilizatorul}
             \end{figure}
 
         \subsection{Indicii de performanță}
@@ -95,7 +95,7 @@
                 \item{\textit{Queue Time} (timpul de așteptare) - reprezintă intervalul de timp în care un utilizator așteaptă la nivelul unui centru de servire}
             \end{itemize}
 
-            Indicii aleși sunt folositori pentru a releva performanța sistemului, întucât ei relevă informații atât despre performanța sistemului. Ei ne oferă atât informații despre calitatea serviciului pentru utilizator, cât și despre performanța sistemului, relevantă pentru adminsitratorul de sistem.
+            Indicii aleși sunt folositori pentru a releva performanța sistemului, întucât ei ne oferă atât informații despre calitatea serviciului pentru utilizator, cât și despre performanța sistemului, informații necesare adminsitratorului de sistem.
 
         \subsection{Valorile inițiale ale indicilor de performanță}
             În figura 2 putem găsi un rezumat al indicilor de performanță. În tabelele următoare se găsesc valorile inițiale ale indicilor de performanță, rezultate în urma procesului de simulare.
@@ -140,7 +140,7 @@
         \subsection{Experimentul \#1}
             În cadrul acestui prim experiment vom îmbunătăți serviciul de \textit{Frontend}, anume îi vom înjumătăți timpul de servire, simulând astfel un serviciu de două ori mai rapid, pentru ambele clase de utilizatori.
 
-            Astfel, noile valori medii (\textit{mean values}) ale timpilor de service pot fi găsiți în tabelul următor:
+            Astfel, noile valori medii (\textit{mean values}) ale timpilor de servire pot fi găsiți în tabelul următor:
 
             \begin{table}[!h]
                 \centering
@@ -197,7 +197,7 @@
         \subsection{Experimentul \#2}
             Mai departe, urmărim același scop ca la experimentul precedent, și identificăm acele servicii care produc fenomenul de \textit{bottlenecking}: serviciul \textit{Frontend} pentru clasa de utilizatori \textit{Puntuale}, respectiv serviciul \textit{Treno} pentru clasa de utilizatori \textit{Itinerario}.
             
-            Înjumătățim timpii de servire aferenți acestor servicii pentru clasele de utilizatori menționate, astfel că, față de valorile din tabela 2, serviciul \textit{Frontend} va avea un timp de servire de 0.0005 unități de timp pentru utilizatorii \textit{Puntuale}, iar serviciul \textit{Treno} va avea un timp de servire de 0.0005 unități de timp pentru utilizatorii \textit{Itinerario}.
+            Înjumătățim timpii medii de servire aferenți acestor servicii pentru clasele de utilizatori menționate, astfel că, față de valorile din tabela 2, serviciul \textit{Frontend} va avea un timp de servire de 0.0005 unități de timp pentru utilizatorii \textit{Puntuale}, iar serviciul \textit{Treno} va avea un timp de servire de 0.0005 unități de timp pentru utilizatorii \textit{Itinerario}.
             \pagebreak
 
             \begin{table}[!h]
@@ -215,7 +215,7 @@
                 \caption{Noile valori ale timpilor de servire}
             \end{table}
 
-            Valorile indicilor de performanță , obținute în urma simulării, se pot găsi în tabelele de mai jos. Observăm că variația performanței sistemului este mult mai mică decât la experimentul precedent, fapt ce ne sugerează că trebuie să căutăm o strategie mai eficientă de îmbunătățire a sistemului.
+            Valorile indicilor de performanță, obținute în urma simulării, se pot găsi în tabelele de mai jos. Observăm că variația performanței sistemului este mult mai mică decât la experimentul precedent, fapt ce ne sugerează că trebuie să începem să căutăm o strategie mai eficientă de îmbunătățire a sistemului.
 
             \begin{table}[!h]
                 \centering
@@ -251,9 +251,9 @@
 
         Modularitatea sistemului permite schimbări localizate, care afectează regiuni izolate din sistem, ceea ce din nou reduce din costurile de îmbunătățire a sistemului după ce acesta este dat înspre folosire publicului.
 
-        Simularea trebuie însă realizată cu o mentalitate realistă, întrucât îmbunătățirea sistemului prin schimbări incrementale ale serviciilor, cum a fost cazul în experimentele prezentate, are un randament care scade odată cu numărul de iterații. Fenomenul poartă denumirea de \textit{diminishing returns}, însemnând că efortul depus pentru îmbunătățirea sistemului duce la variații din ce în ce mai mici.
+        Simularea trebuie însă realizată urmând o mentalitate realistă, întrucât îm\-bu\-nă\-tă\-ți\-rea sistemului prin schimbări incrementale ale serviciilor, cum a fost cazul în experimentele prezentate, are un randament care scade odată cu numărul de iterații. Fenomenul poartă denumirea de \textit{diminishing returns}, însemnând că efortul depus pentru îmbunătățirea sistemului duce la variații din ce în ce mai mici.
 
-        Deși fenomenul de \textit{bottlenecking} nu poate fi înlăturat complet, simularea ne permite, atât nouă cât și administratorilor de sistem, să ajungem la un compromis care să mulțumească pe toată lumea. O mică investiție poate, astfel, să ducă la beneficii palpabile pe termen lung.
+        Deși fenomenul de \textit{bottlenecking} nu poate fi înlăturat complet, simularea ne permite, atât nouă cât și administratorilor de sistem, să ajungem la un compromis care să mulțumească pe toată lumea. O mică investiție în faza de proiectare poate, astfel, să ducă la beneficii palpabile pe termen lung.
 
         Viitoare lucrări pe această temă ar trebui să trateze alte strategii de îmbunătățire a sistemului. Printre acestea putem aminti analizarea sectorului demografic pentru care se realizează aplicația, pentru a cunoaște mai bine procentajul din fiecare clasă de utilizatori, și reorganizarea conexiunilor dintre serviciile din sistem pentru a optimiza fluxul de informații.
 

@@ -3,7 +3,7 @@
 \usepackage{hyperref}
 \usepackage[romanian]{babel}
 \usepackage{graphicx}
-\usepackage{comment}
+\usepackage[margin=1.25in]{geometry}
 
 \usepackage{lipsum}
 
@@ -67,7 +67,7 @@
     \section{Descrierea modelului construit}
 
         \subsection{Arhitectura modelului}
-            Arhitectura modelului cuprinde serviciile menționate în secțiunea anterioară, modelate ca module de tip \textit{Queue} în contextul programului JMT (Java Modelling Tools). Serviciile sunt următoarele:
+            Arhitectura modelului, care poate fi găsită în figura 1, cuprinde serviciile menționate în secțiunea anterioară, modelate ca module de tip \textit{Queue} în contextul programului JMT (Java Modelling Tools). Serviciile sunt următoarele:
 
             \begin{itemize}
                 \itemsep0em
@@ -82,52 +82,117 @@
 
             \begin{figure}[h!]
                 \centering
-                \includegraphics[width=0.5\textwidth]{images/architecture.png}
+                \includegraphics[width=0.45\textwidth]{images/architecture.png}
                 \caption{Arhitectura sistemului: utilizatorii accesează prin intermediul interfeței cu utilizatorul diversele servicii oferite de aplicație}
             \end{figure}
-            \pagebreak
 
         \subsection{Indicii de performanță}
-            Indicii de performanță pe care îi studiază atât autorii lucrării inițiale, cât și noi în cadrul acestui proiect, sunt timpii de așteptare aferenți fiecărui serviciu în parte.
+            Indicii de performanță pe care îi studiem în lucrarea curentă sunt următorii:
+            \begin{itemize}
+                \item{\textit{Utilization} (gradul de utilizare) - reprezintă procentajul din timp în care serviciul este ocupat}
+                \item{\textit{System Response Time} (timpul de răspuns al sistemului) - reprezintă timpul de răspuns din punctul de vedere al utilizatorului, mai exact intervalul de timp dintre trimiterea unei cereri din partea utilizatorului și primirea răspunsului}
+                \item{\textit{System Throughput} (capacitatea de trecere a sistemului) - reprezintă rata la care utilizatorii realizează o interacțiune completă cu sistemul}
+                \item{\textit{Queue Time} (timpul de așteptare) - reprezintă intervalul de timp în care un utilizator așteaptă la nivelul unui centru de servire}
+            \end{itemize}
 
-            Timpul de așteptare al unui serviciu reprezintă timpul necesar unui utilizator pentru a completa o interacțiune cu serviciul. Acesta include timpul de așteptare la coadă, cât și timpul necesar primirii beneficiilor asociate serviciului respectiv.
-
-            Timpul de așteptare nu trebuie confundat cu timpul de răspuns, acesta din urmă reprezentând intervalul de timp dintre accesarea serviciului de către utilizator și momentul în care își duce la bun sfârșit interacțiunea cu serviciul respectiv.
-
-            Diferența dintre timpul de așteptare și timpul de răspuns este relevată și de relația matematică care cuprinde cele două valori: $W=R \cdot V$, unde W reprezintă timpul de așteptare, R reprezintă timpul de răspuns, iar V reprezintă numărul de vizite ale utilizatorului în cauză la serviciul despre care se vorbește.
-
-            Întrucât țelul administratorului de sistem este ca utilizatorul să petreacă cât mai puțin timp așteptând dupa serviciile din cadrul aplicației, acest indice de performanță, anume timpul de așteptare, este suficient pentru a releva performanța sistemului. Cu cât minimizăm mai mult acești indici, cu atât utilizatorul așteaptă mai puțin, iar experiența sa este una mai eficientă, un plus atât pentru el, cât și pentru compania care deține aplicația.
+            Indicii aleși sunt folositori pentru a releva performanța sistemului, întucât ei relevă informații atât despre performanța sistemului. Ei ne oferă atât informații despre calitatea serviciului pentru utilizator, cât și despre performanța sistemului, relevantă pentru adminsitratorul de sistem.
 
         \subsection{Valorile inițiale ale indicilor de performanță}
-            În figura !!!!!!!!!! putem găsi rezultatele simulării inițiale, mai exact valorile indicilor de performanță obținute în urma procesului de simulare. În tabela !!!!!!!!!! se poate găsi un rezumat al acestor valori.
+            În figura 2 putem găsi un rezumat al indicilor de performanță. În tabelele următoare se găsesc valorile inițiale ale indicilor de performanță, rezultate în urma procesului de simulare.
+
+            Scopul lucrării studiate este acela de a identifica acele module care îngreunează funcționarea sistemului, prin așa-numitul proces de \textit{bottlenecking}. Identificarea și îmbunătățirea serviciului care produce acest efect va duce la o mai bună performanță a sistemului, iar acesta va fi scopul experimentelor care vor urma în secțiunea 3.
             \pagebreak
 
             \begin{figure}[!h]
                 \centering
-                \includegraphics[width=0.5\textwidth]{images/initial_results.png}
-                \caption{!!!!!!!!!!}
+                \includegraphics[width=0.85\textwidth]{images/perf_indices.png}
+                \caption{Descrierea indicilor de performanță ai sistemului. Din imagine mai lipsesc timpii de așteptare aferenți câtorva module respectiv clase de utilizatori, însă ei se pot regăsi în tabelele de mai jos}
             \end{figure}
+
+            \begin{table}[!h]
+                \centering
+                \begin{tabular}{r|cclrr|cc}
+                    \multicolumn{1}{c|}{Utilization} & "Puntuale" & "Itinerario" &  & \multicolumn{1}{c}{} & \multicolumn{1}{c|}{Queue Time} & "Puntuale"       & "Itinerario"     \\ \cline{1-3} \cline{6-8} 
+                    Frontend                         & 0.0120     & 0.1072       &  &                      & Frontend                        & \textbf{5.66E-4} & \textbf{4.98E-4} \\
+                    Carello                          & -          & 0.0212       &  &                      & Carello                         & -                & 0.00             \\
+                    Mappe                            & 7.44E-3    & 2.55E-3      &  &                      & Mappe                           & 3.18E-6          & 1.41E-5          \\
+                    Treno                            & 3.60E-3    & 1.70E-3      &  &                      & Treno                           & 3.80E-6          & 1.48E-5          \\
+                    Aereo                            & 2.18E-3    & 1.36E-3      &  &                      & Aereo                           & 2.52E-6          & 4.85E-6          \\
+                    Taxi                             & 1.68E-3    & 2.04E-3      &  &                      & Taxi                            & 3.64E-6          & 3.50E-6          \\
+                    Pagamento                        & 9.83E-4    & 8.78E-4      &  &                      & Pagamento                       & 1.78E-6          & 1.60E-7         
+                \end{tabular}
+            \end{table}
 
             \begin{table}[!h]
                 \centering
                 \begin{tabular}{r|cc}
                     \multicolumn{1}{c|}{} & "Puntuale" & "Itinerario" \\ \hline
-                    Frontend              & 0.00000    & 0.00000      \\
-                    Carello               & 0.00000    & 0.00000      \\
-                    Mappe                 & 0.00000    & 0.00000      \\
-                    Treno                 & 0.00000    & 0.00000      \\
-                    Aereo                 & 0.00000    & 0.00000      \\
-                    Taxi                  & 0.00000    & 0.00000      \\
-                    Pagamento             & 0.00000    & 0.00000     
+                    System Response Time  & 1.0327     & 1.1548       \\
+                    System Throughput     & 0.9683     & 0.8659      
                 \end{tabular}
+                \caption{Rezultatele inițiale ale simulării. Observăm că serviciul de \textit{Frontend} produce efectul de bottleneck, întrucât timpul de așteptare al său este cel mai pronunțat.}
             \end{table}
             \pagebreak
 
-
     \section{Experimente}
+        Experimentele ce urmează au ca scop îmbunătățirea performanțelor sistemului, prin identificarea serviciilor care îngreunează sistemul, și înlocuirea lor cu o serie de servicii mai performante. Acesta este avantajul arhitecturilor de tipul Service-oriented, anume că îmbunătățirea sistemului se poate face modular, încă din faza de proiectare, în funcție de necesitățile clienților.
 
         \subsection{Experimentul \#1}
-            \lipsum[1-2]
+            În cadrul acestui prim experiment vom îmbunătăți serviciul de \textit{Frontend}, anume îi vom înjumătăți timpul de servire, simulând astfel un serviciu de două ori mai rapid, pentru ambele clase de utilizatori.
+
+            Astfel, noile valori medii (\textit{mean values}) ale timpilor de service pot fi găsiți în tabelul următor:
+
+            \begin{table}[!h]
+                \centering
+                \begin{tabular}{r|cc}
+                    \multicolumn{1}{c|}{} & "Puntuale"      & "Itinerario"    \\ \hline
+                    Frontend              & \textit{0.0010} & \textit{0.0033} \\
+                    Carello               &                 & 0.0050          \\
+                    Mappe                 & 0.0025          & 0.0005          \\
+                    Treno                 & 0.0050          & 0.0010          \\
+                    Aereo                 & 0.0030          & 0.0008          \\
+                    Taxi                  & 0.0030          & 0.0008          \\
+                    Pagamento             & 0.0010          & 0.0010         
+                \end{tabular}
+                \caption{Valorile medii ale timpilor de servire (urmând o distribuție exponențială) corespunzători serviciilor din sistem. Observăm că pentru clasa \textit{Puntuale}, serviciul \textit{Carello} nu are nicio valoare, fiindcă utilizatorii punctuali nu au posibilitatea de a-și adăuga tichetele în coșul de cumpărături}
+            \end{table}
+
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=\textwidth]{images/exp1_setup.png}
+                \caption{Modificările din JMT făcute în cadrul acestui experiment}
+            \end{figure}
+
+            Rezultatele simulării cu noul serviciu de \textit{Frontend} se pot găsi în tabelele de mai jos.
+            \pagebreak
+
+            \begin{table}[!h]
+                \centering
+                \begin{tabular}{r|cclrr|cc}
+                    \multicolumn{1}{c|}{Utilization} & "Puntuale" & "Itinerario" &  & \multicolumn{1}{c}{} & \multicolumn{1}{c|}{Queue Time} & "Puntuale"       & "Itinerario"     \\ \cline{1-3} \cline{6-8} 
+                    Frontend                         & 6.05E-3    & 0.0570       &  &                      & Frontend                        & \textbf{1.45E-4} & 1.18E-5          \\
+                    Carello                          & -          & 0.0229       &  &                      & Carello                         & -                & 0.00             \\
+                    Mappe                            & 7.47E-3    & 2.76E-3      &  &                      & Mappe                           & 3.52E-6          & 1.33E-5          \\
+                    Treno                            & 3.70E-3    & 1.83E-3      &  &                      & Treno                           & 3.61E-6          & \textbf{1.42E-5} \\
+                    Aereo                            & 2.25E-3    & 1.45E-3      &  &                      & Aereo                           & 2.27E-6          & 5.07E-6          \\
+                    Taxi                             & 1.73E-3    & 2.19E-3      &  &                      & Taxi                            & 3.37E-6          & 2.80E-6          \\
+                    Pagamento                        & 9.92E-4    & 9.27E-4      &  &                      & Pagamento                       & 1.66E-6          & 7.55E-7         
+                \end{tabular}
+            \end{table}
+
+            \begin{table}[!h]
+                \centering
+                \begin{tabular}{r|cc}
+                    \multicolumn{1}{c|}{} & "Puntuale" & "Itinerario" \\ \hline
+                    System Response Time  & 1.0150     & 1.1005       \\
+                    System Throughput     & 0.9852     & 0.9087      
+                \end{tabular}
+                \caption{Rezultatele obținute de pe urma primului experiment}
+            \end{table}
+
+            Îmbunătățirea serviciului de \textit{Frontend} duce la o mai bună performanță a sistemului pe toate planurile: gradul de utilizare este mai scăzut, timpul de așteptare a scăzut, timpul de răspuns al sistemului a scăzut și el, iar capacitatea de trecere a sistemului a crescut.
+
+            Deși aceste variații nu par semnificative, trebuie să reținem că simularea s-a realizat cu câte un utilizator în fiecare clasă (la fel ca în lucrarea inițială), \textit{Puntuale}, respectiv {Itinerario}. Scalarea aplicației la un număr mai semnificativ de utilizatori va duce la amplificarea acestor diferențe, și va accentua superioritatea sistemului care conține serviciul de \textit{Frontend} modificat.
         
         \subsection{Experimentul \#2}
             \lipsum[1-2]

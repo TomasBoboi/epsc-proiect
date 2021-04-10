@@ -192,10 +192,57 @@
 
             Îmbunătățirea serviciului de \textit{Frontend} duce la o mai bună performanță a sistemului pe toate planurile: gradul de utilizare este mai scăzut, timpul de așteptare a scăzut, timpul de răspuns al sistemului a scăzut și el, iar capacitatea de trecere a sistemului a crescut.
 
-            Deși aceste variații nu par semnificative, trebuie să reținem că simularea s-a realizat cu câte un utilizator în fiecare clasă (la fel ca în lucrarea inițială), \textit{Puntuale}, respectiv {Itinerario}. Scalarea aplicației la un număr mai semnificativ de utilizatori va duce la amplificarea acestor diferențe, și va accentua superioritatea sistemului care conține serviciul de \textit{Frontend} modificat.
+            Deși aceste variații nu par semnificative, trebuie să reținem că simularea s-a realizat cu câte un utilizator în fiecare clasă (la fel ca în lucrarea inițială), \textit{Puntuale}, respectiv \textit{Itinerario}. Scalarea aplicației la un număr mai semnificativ de utilizatori va duce la amplificarea acestor diferențe, și va accentua superioritatea sistemului care conține serviciul de \textit{Frontend} modificat.
         
         \subsection{Experimentul \#2}
-            \lipsum[1-2]
+            Mai departe, urmărim același scop ca la experimentul precedent, și identificăm acele servicii care produc fenomenul de \textit{bottlenecking}: serviciul \textit{Frontend} pentru clasa de utilizatori \textit{Puntuale}, respectiv serviciul \textit{Treno} pentru clasa de utilizatori \textit{Itinerario}.
+            
+            Înjumătățim timpii de servire aferenți acestor servicii pentru clasele de utilizatori menționate, astfel că, față de valorile din tabela 2, serviciul \textit{Frontend} va avea un timp de servire de 0.0005 unități de timp pentru utilizatorii \textit{Puntuale}, iar serviciul \textit{Treno} va avea un timp de servire de 0.0005 unități de timp pentru utilizatorii \textit{Itinerario}.
+            \pagebreak
+
+            \begin{table}[!h]
+                \centering
+                \begin{tabular}{r|cc}
+                    \multicolumn{1}{c|}{} & "Puntuale"      & "Itinerario"    \\ \hline
+                    Frontend              & \textit{0.0005} & 0.0033 \\
+                    Carello               &                 & 0.0050          \\
+                    Mappe                 & 0.0025          & 0.0005          \\
+                    Treno                 & 0.0050          & \textit{0.0005} \\
+                    Aereo                 & 0.0030          & 0.0008          \\
+                    Taxi                  & 0.0030          & 0.0008          \\
+                    Pagamento             & 0.0010          & 0.0010         
+                \end{tabular}
+                \caption{Noile valori ale timpilor de servire}
+            \end{table}
+
+            Valorile indicilor de performanță , obținute în urma simulării, se pot găsi în tabelele de mai jos. Observăm că variația performanței sistemului este mult mai mică decât la experimentul precedent, fapt ce ne sugerează că trebuie să căutăm o strategie mai eficientă de îmbunătățire a sistemului.
+
+            \begin{table}[!h]
+                \centering
+                \begin{tabular}{r|cclrr|cc}
+                    \multicolumn{1}{c|}{Utilization} & "Puntuale" & "Itinerario" &  & \multicolumn{1}{c}{} & \multicolumn{1}{c|}{Queue Time} & "Puntuale"       & "Itinerario"     \\ \cline{1-3} \cline{6-8} 
+                    Frontend                         & 3.02E-3    & 0.0574       &  &                      & Frontend                        & \textbf{1.40E-4} & 3.92E-6          \\
+                    Carello                          & -          & 0.0226       &  &                      & Carello                         & -                & 0.00             \\
+                    Mappe                            & 7.56E-3    & 2.74E-3      &  &                      & Mappe                           & 4.90E-6          & 1.26E-5          \\
+                    Treno                            & 3.68E-3    & 9.12E-3      &  &                      & Treno                           & 1.54E-6          & \textbf{1.31E-5} \\
+                    Aereo                            & 2.22E-3    & 1.46E-3      &  &                      & Aereo                           & 3.08E-6          & 4.74E-6          \\
+                    Taxi                             & 1.71E-3    & 2.19E-3      &  &                      & Taxi                            & 4.58E-6          & 5.38E-6          \\
+                    Pagamento                        & 9.84E-4    & 9.19E-4      &  &                      & Pagamento                       & 2.25E-6          & 1.06E-6         
+                    \end{tabular}
+            \end{table}
+
+            \begin{table}[!h]
+                \centering
+                \begin{tabular}{r|cc}
+                    \multicolumn{1}{c|}{} & "Puntuale" & "Itinerario" \\ \hline
+                    System Response Time  & 1.0050     & 1.0652       \\
+                    System Throughput     & 0.9925     & 0.9211      
+                \end{tabular}
+                \caption{Rezultatele obținute în urma îmbunătățirii serviciului de \textit{Frontend} pentru utilizatorii \textit{Puntuale}, respectiv a serviciului \textit{Treno} pentru utilizatorii \textit{Itinerario}}
+            \end{table}
+
+            Aceste îmbunătățiri, deși minore, ne indică o caracteristică importantă a sistemelor Service-oriented: nu putem înlătura complet fenomenul de \textit{bottlenecking}, întrucât întotdeauna va exista un serviciu care va îngreuna performanța sistemului. Țelul nostru ar trebui să fie mai degrabă găsirea unui compromis între costul fiecărui serviciu în parte și performanța sistemului.
+            \pagebreak
 
     \section{Concluzii}
         \lipsum[1-2]
